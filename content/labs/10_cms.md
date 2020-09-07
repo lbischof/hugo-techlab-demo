@@ -1,5 +1,6 @@
 ---
 title: "Lab 10: Netlify CMS"
+weight: 100
 ---
 
 ## Setup Github authentication

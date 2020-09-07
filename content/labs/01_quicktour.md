@@ -1,5 +1,6 @@
 ---
 title: "Lab 1: Quicktour Hugo"
+weight: 1
 ---
 
 In this lab we will introduce the core concepts of Hugo.

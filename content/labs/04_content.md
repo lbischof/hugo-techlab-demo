@@ -1,5 +1,6 @@
 ---
 title: "Lab 4: Content"
+weight: 40
 ---
 
 In the last lab we created a new site and theme.

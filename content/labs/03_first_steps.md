@@ -1,5 +1,6 @@
 ---
 title: "Lab 3: First Steps"
+weight: 30
 ---
 
 In this lab we will create a new Hugo project.

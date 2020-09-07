@@ -1,5 +1,6 @@
 ---
 title: "Lab 7: Partials"
+weight: 70
 ---
 
 Partial templates allow you to introduce modularity into your website. They let you break your website down into individual components and then insert those components into layouts to create the site.

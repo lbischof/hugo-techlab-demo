@@ -1,5 +1,6 @@
 ---
 title: "Lab 5: Templates"
+weight: 50
 ---
 
 In the last lab we added some content. Hugo uses template files to render content (markdown) into HTML. Template files are a bridge between the content and presentation. Hugo doesn't provide any default templates, meaning that content is not rendered by default.

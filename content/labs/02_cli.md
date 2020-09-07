@@ -1,5 +1,6 @@
 ---
 title: "Lab 2: Install the Hugo CLI"
+weight: 20
 ---
 
 As the client is written in Go, you can run the single binary on the following Operating Systems:

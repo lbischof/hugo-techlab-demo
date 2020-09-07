@@ -1,5 +1,6 @@
 ---
 title: "Lab 6: Template Blocks"
+weight: 60
 ---
 
 The base and block constructs allow you to define the outer shell of your templates.

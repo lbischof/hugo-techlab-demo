@@ -1,5 +1,6 @@
 ---
 title: "Lab 8: Assets"
+weight: 80
 ---
 
 Assets are Javascript, stylesheets and images. These assets can either be served directly without modification or Hugo can process them.

@@ -1,5 +1,6 @@
 ---
 title: "Lab 9: Deployment"
+weight: 90
 ---
 
 Now we will deploy our small website to Netlify.
