@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><body><div id="content">
+  <h1>Lab 2: Install the Hugo CLI</h1>
+  <p>As the client is written in Go, you can run the single binary on the following Operating Systems:</p>
+<ul>
+<li>Linux</li>
+<li>MacOS</li>
+<li>Windows</li>
+</ul>
+<h2 id="download-hugo">Download <code>hugo</code></h2>
+<p>The easiest way to install Hugo is by <a href="https://github.com/gohugoio/hugo/releases">downloading the binary from Github</a> and moving it into <code>~/bin</code>. Pick the release for your operating system. You probably have 64bit.</p>
+<p>However there are also <a href="https://gohugo.io/getting-started/installing">other ways of installing Hugo</a>.</p>
+<h3 id="set-the-the-right-file-modes-on-linux-and-macos">Set the the right file modes on Linux and MacOS</h3>
+<p>If you downloaded the binary from Github, then make sure it is executable:</p>
+<pre><code>cd ~/bin
+chmod +x hugo
+</code></pre><h3 id="hugo-in-path-variable"><code>hugo</code> in PATH variable</h3>
+<p>In <strong>Linux</strong> and <strong>Mac OS X</strong> the directory <code>~/bin</code> should already be part of the PATH variable.
+In case <code>hugo</code> is placed in a different directory, you can change the PATH with the following command:</p>
+<pre><code>$ export PATH=$PATH:[path to hugo]
+</code></pre><h2 id="verify-installation">Verify installation</h2>
+<p>The <code>hugo</code> binary should now be correctly installed. Check by running the following command:</p>
+<pre><code>$ hugo version
+</code></pre><p>The shown output should look similar to this:</p>
+<pre><code>Hugo Static Site Generator v0.74.2 linux/amd64 BuildDate: unknown
+</code></pre><p>If you don&rsquo;t see a similar out, possibly there are issues with the set PATH variable.</p>
+<hr>
+<h2 id="bash-completion-optional">bash completion (optional)</h2>
+<p>On most linux systems you have to install the bash-completion packet to make the completion work.</p>
+<p>Ubuntu:</p>
+<pre><code>sudo apt install bash-completion
+</code></pre><p>Activate bash completion by running the following command:</p>
+<pre><code>$ sudo hugo gen autocomplete
+</code></pre><p>zsh is currently not supported.</p>
+<hr>
+<p><strong>End of lab 2</strong></p>
+<!-- raw HTML omitted -->
+<p><a href="../README.md">← back to the overview</a></p>
+
+
+        </div></body>
+</html>

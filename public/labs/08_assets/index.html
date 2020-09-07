@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><body><div id="content">
+  <h1>Lab 8: Assets</h1>
+  <p>Assets are Javascript, stylesheets and images. These assets can either be served directly without modification or Hugo can process them.</p>
+<h2 id="static-files">Static Files</h2>
+<p>By default, the <code>static/</code> directory in the site project is used for all <em>static files</em> (e.g. stylesheets, JavaScript, images). The static files are served on the site root path (eg. if you have the file <code>static/image.png</code> you can access it using <code>http://{server-url}/image.png</code>, to include it in a document you can use <code>![Example image](/image.png)</code> ).</p>
+<h2 id="resources">Resources</h2>
+<p>Hugo also supports processing files. For example it is possible to convert Sass to CSS or bundle multiple files into one.</p>
+<p>For this assets must be stored in the <code>assets/</code> directory. In order to process an asset with Hugo Pipes, it must be retrieved as a resource using <code>resources.Get</code>, which takes one argument: the filepath of the file relative to the asset directory.</p>
+<p>Example (see below for more information):</p>
+<pre><code>{{ $style := resources.Get &quot;sass/main.scss&quot; | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ $style.Permalink }}&quot;&gt;
+</code></pre><p>Assets will only be published (to <code>./public</code>) if <code>.Permalink</code> is used.</p>
+<h3 id="tocss">ToCSS</h3>
+<p>Any SASS or SCSS file can be transformed into a CSS file using <code>| resources.ToCSS</code>. See the <a href="https://gohugo.io/hugo-pipes/scss-sass/">Hugo docs</a> for more information.</p>
+<h3 id="babel">Babel</h3>
+<p>Any JavaScript resource file can be transpiled to another JavaScript version using <code>| resources.Babel</code>. See the <a href="https://gohugo.io/hugo-pipes/babel/">Hugo docs</a> for more information.</p>
+<h3 id="minify">Minify</h3>
+<p>Any resource (CSS, JS, JSON, HTML, SVG or XML) can be minified using <code>| resources.Minify</code>.</p>
+<h3 id="concat">Concat</h3>
+<p>Asset files of the same MIME type can be bundled into one resource using <code>| resources.Concat</code>.</p>
+<pre><code>{{ $plugins := resources.Get &quot;js/plugins.js&quot; }}
+{{ $global := resources.Get &quot;js/global.js&quot; }}
+{{ $js := slice $plugins $global | resources.Concat &quot;js/bundle.js&quot; }}
+&lt;script src=&quot;{{ $js.Permalink }}&quot;&gt;&lt;/script&gt;
+</code></pre><h3 id="fingerprint">Fingerprint</h3>
+<p>Fingerprinting can be applied to any asset file using <code>| resources.Fingerprint</code>. This is useful for caching. The Fingerprint changes every time the file is changed, thus invalidating the cache.</p>
+<h2 id="page-bundles">Page Bundles</h2>
+<p>Instead of using the <code>assets</code> directory, resources can also be placed directly beside the content.</p>
+<pre><code>content/
+├── about.md
+└── posts
+    └── my-post
+        ├── image1.jpg
+        ├── image2.png
+        └── index.md
+</code></pre><h2 id="conclusion">Conclusion</h2>
+<hr>
+<p><strong>Ende Lab 8</strong></p>
+<!-- raw HTML omitted -->
+<p><a href="../README.md">← back to the overview</a></p>
+
+
+        </div></body>
+</html>

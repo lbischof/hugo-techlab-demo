@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html><body><div id="content">
+  <h1>Lab 6: Template Blocks</h1>
+  <p>The base and block constructs allow you to define the outer shell of your templates.</p>
+<p>The theme already includes a basic base template in <code>layouts/_default/baseof.html</code>:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    {{- partial &quot;head.html&quot; . -}}
+    &lt;body&gt;
+        {{- partial &quot;header.html&quot; . -}}
+        &lt;div id=&quot;content&quot;&gt;
+        {{- block &quot;main&quot; . }}{{- end }}
+        &lt;/div&gt;
+        {{- partial &quot;footer.html&quot; . -}}
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>The block keyword behaves like a function that accepts two arguments:</p>
+<ol>
+<li>the name of the block</li>
+<li>the current variable scope (<code>.</code>) so it is available inside the block</li>
+</ol>
+<p>A block defines the location where another template can insert itself.</p>
+<h2 id="update-homepage-to-use-the-base-template">Update Homepage to use the Base Template</h2>
+<p>Now we want to insert our homepage template into the &ldquo;main&rdquo; block. We can achieve this by surrounding our template with <code>{{ define &quot;main&quot; }}</code>:</p>
+<pre><code>{{ define &quot;main&quot; }}
+  &lt;h1&gt;homepage&lt;/h1&gt;
+
+  {{ range .Site.RegularPages }}
+    &lt;h2&gt;
+      &lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;
+    &lt;/h2&gt;
+  {{ end }}
+{{ end }}
+</code></pre><p>Check if everything worked:</p>
+<pre><code>$ hugo
+$ cat public/index.html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;&lt;body&gt;&lt;div id=&quot;content&quot;&gt;
+&lt;h1&gt;homepage&lt;/h1&gt;
+  &lt;h2&gt;
+    &lt;a href=&quot;http://example.org/labs/01_quicktour/&quot;&gt;1. Quicktour&lt;/a&gt;
+  &lt;/h2&gt;
+&lt;/div&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="exercise-update-the-page-template-to-use-the-base-template">Exercise: Update the Page Template to use the Base Template</h2>
+<p>In the last lab we created a template that renders a single page. This template should also use the base template.</p>
+<!-- raw HTML omitted -->
+<p>Update the file <code>./themes/mytheme/layouts/_default/single.html</code>:</p>
+<pre><code>{{ define &quot;main&quot; }}
+  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;
+  {{ .Content }}
+{{ end }}
+</code></pre><p>And then run <code>hugo</code>.</p>
+<!-- raw HTML omitted -->
+<p>The file <code>public/labs/01_quicktour/index.html</code> should now be surrounded with a <code>&lt;html&gt;</code> tag.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Our small website is slowly taking shape. In the next lab we will learn about partials. These can be included in multiple templates and ensure that template code only needs to be written once.</p>
+<hr>
+<p><strong>Ende Lab 6</strong></p>
+<!-- raw HTML omitted -->
+<p><a href="../README.md">← back to the overview</a></p>
+
+
+        </div></body>
+</html>

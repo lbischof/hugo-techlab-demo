@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><body><div id="content">
+  <h1>Lab 7: Partials</h1>
+  <p>Partial templates allow you to introduce modularity into your website. They let you break your website down into individual components and then insert those components into layouts to create the site.</p>
+<p>Creating partial templates allows us to split our templates. It separates the website into smaller parts making it easier to manage. We can now tweak and change individual parts of the website without having to change or affect everything else. This is good design.</p>
+<h2 id="create-a-partial">Create a Partial</h2>
+<p>The partial located at <code>themes/mytheme/layouts/partials/head.html</code> is already included in the <code>layouts/_default/baseof.html</code> template. So we can add some content:</p>
+<pre><code>&lt;head&gt;
+  &lt;title&gt;{{ .Site.Title }}&lt;/title&gt;
+&lt;/head&gt;
+</code></pre><p>And it should just work.</p>
+<h2 id="access-variables-inside-a-partial">Access Variables Inside a Partial</h2>
+<p>In a hugo layout we can access the front matter page parameters using <code>.Params</code>. The dot represents the scope of all values associated with the given page. In order to access the front matter parameters in our partials we must pass in the scope of the page (represented by the dot) like this:</p>
+<pre><code>{{ partial &quot;head.html&quot; . }}
+</code></pre><p>It is also possible to pass custom values. An easy way to do this is by creating and passing in a dict. Dict is short for dictionary and contains a series of key value pairs.</p>
+<pre><code>{{ partial &quot;head.html&quot; (dict &quot;color&quot; &quot;blue&quot; )}}
+</code></pre><p>The color is then available inside the partial with <code>{{ .color }}</code>.</p>
+<p>It is possible to add more key value pairs:</p>
+<pre><code>{{ partial &quot;head.html&quot; (dict &quot;color&quot; &quot;blue&quot; &quot;width&quot; 10 )}}
+</code></pre><h2 id="conclusion">Conclusion</h2>
+<p>Partials allow a lot of modularity and flexibility. Instead of copying a template, we can reuse it in multiple places.</p>
+<hr>
+<p><strong>Ende Lab 7</strong></p>
+<!-- raw HTML omitted -->
+<p><a href="../README.md">← back to the overview</a></p>
+
+
+        </div></body>
+</html>

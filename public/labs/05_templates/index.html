@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html><body><div id="content">
+  <h1>Lab 5: Templates</h1>
+  <p>In the last lab we added some content. Hugo uses template files to render content (markdown) into HTML. Template files are a bridge between the content and presentation. Hugo doesn&rsquo;t provide any default templates, meaning that content is not rendered by default.</p>
+<p>Without templates we would have to copy and paste the header and footer to each page. With templates we define the header and footer once and Hugo automatically includes it in every page. Templates are basically what made static sites great again.</p>
+<p>The terms layout and template are used interchangeably. The directory is called <code>layouts</code>, but the layouts also contain template variables and functions.</p>
+<p>The goal of this lab is to render our content (e.g. <code>content/labs/01_quicktour.md</code>) to HTML.</p>
+<p>There are three types of templates: single, list, and partial. Each type takes a bit of content as input and transforms it based on the commands in the template.</p>
+<p>There are different types of pages:</p>
+<ul>
+<li>Homepage</li>
+<li>Section pages (list template)</li>
+<li>Regular pages (single template)</li>
+<li>Taxonomy pages (tags, categories. also list template)</li>
+<li>Term pages (a single tag. single template)</li>
+</ul>
+<p>A section page is a list of regular pages in a specific section. In our example (<code>content/labs/01_quicktour.md</code>) the section is <code>labs</code> and all files inside this directory are regular pages.</p>
+<h2 id="lookup-order">Lookup order</h2>
+<p>There are lookup rules for each page type. That means that Hugo checks if a specific layout exists. If it doesn&rsquo;t exist then Hugo searches for the next layout (in the lookup order). The first layout that exists will be used.</p>
+<p>The lookup order for the Homepage is (first file found will be used):</p>
+<ul>
+<li>layouts/index.html</li>
+<li>layouts/_default/list.html</li>
+</ul>
+<p>The lookup order for the labs section is:</p>
+<ul>
+<li>layouts/labs/list.html</li>
+<li>layouts/_default/list.html</li>
+</ul>
+<p>The lookup order for a regular page (in the labs section):</p>
+<ul>
+<li>layouts/labs/single.html</li>
+<li>layouts_default/single.html</li>
+</ul>
+<p>These lists have been shortened. To find out more about Hugo&rsquo;s lookup order, see the <a href="https://gohugo.io/templates/lookup-order/">official docs</a></p>
+<h2 id="basic-syntax">Basic Syntax</h2>
+<h3 id="variables">Variables</h3>
+<p>Accessing variables is easy: <code>{{ .Variable }}</code>. The hard part is knowing which variables are available. In Hugo there are different variable scopes:</p>
+<ul>
+<li><a href="https://gohugo.io/variables/site/">Site variables</a></li>
+<li><a href="https://gohugo.io/variables/page/">Page variables</a></li>
+<li><a href="https://gohugo.io/variables/page/#section-variables-and-methods">Section variables</a></li>
+<li><a href="https://gohugo.io/variables/taxonomy/">Taxonomy variables</a></li>
+</ul>
+<p>And a few more&hellip; As you may guess the site variables are global and can be accessed everywhere. Every layer below the site variables adds more specific variables, but also has access to all the more general variables.</p>
+<p>e.g. A section template has access to the section variables, but also page and site variables.</p>
+<p>Some functions also create there own scope (e.g. using <code>range</code> to loop over pages allows you to access the relevant pages variables)</p>
+<p>For developers it is probably easiest to think of the leading <code>.</code> equivalent to <code>this</code> in programing languages.</p>
+<p>When editing the layouts you will mostly encounter <a href="https://gohugo.io/variables/page/">page variables</a>. The following is a small list of the most important ones:</p>
+<p><strong>.Content</strong><!-- raw HTML omitted -->
+the content itself, defined below the front matter.</p>
+<p><strong>.Title</strong><!-- raw HTML omitted -->
+the title for this page.</p>
+<p><strong>.Date</strong><!-- raw HTML omitted -->
+the date associated with the page; .Date pulls from the date field in a content’s front matter.</p>
+<p><strong>.Params</strong><!-- raw HTML omitted -->
+contains all other values defined in the front matter (e.g. <code>.Params.tags</code>).</p>
+<p><strong>.Permalink</strong><!-- raw HTML omitted -->
+the link to this page</p>
+<h3 id="functions">Functions</h3>
+<p>Functions allow more complex behaviour. It is possible to conditionally render content or loop over pages. There are functions to uppercase a variable or check if a file exists. See the <a href="https://gohugo.io/functions">Hugo docs</a> for a full list.</p>
+<p>Functions have the basic syntax:</p>
+<pre><code>{{ function argument1 argument2 }}
+</code></pre><p>This is a bit different than other languages where it would be <code>function(argument1, argument2)</code>.</p>
+<p>An example with <code>eq</code>:</p>
+<pre><code>{{ eq 1 2 }}
+&lt;!-- prints false --&gt;
+</code></pre><p><strong>range</strong><!-- raw HTML omitted -->
+Loops over a list of items.</p>
+<p>See <a href="https://gohugo.io/templates/introduction/#iteration">https://gohugo.io/templates/introduction/#iteration</a> for examples.</p>
+<p><strong>eq</strong><!-- raw HTML omitted -->
+Compares two numbers and returns true if they are equal.</p>
+<p>See <a href="https://gohugo.io/templates/introduction/#conditionals">https://gohugo.io/templates/introduction/#conditionals</a> for some examples with <code>if</code>.</p>
+<p><strong>ne</strong><!-- raw HTML omitted -->
+The inverse of <code>eq</code>.</p>
+<p><strong>isset</strong><!-- raw HTML omitted -->
+Checks if the variable is defined.</p>
+<p><strong>where</strong><!-- raw HTML omitted -->
+Filters a list of items based on a value.</p>
+<p>See <a href="https://gohugo.io/functions/where/">https://gohugo.io/functions/where/</a> for more information.</p>
+<h2 id="exercise-list-all-the-labs">Exercise: list all the labs</h2>
+<p>We would like to list all the labs on the homepage. For this we can use the <code>.Site.RegularPages</code> variable, that contains a list of all the pages. Edit <code>themes/mytheme/layouts/index.html</code> so it looks like this:</p>
+<pre><code>&lt;h1&gt;homepage&lt;/h1&gt;
+
+{{ range .Site.RegularPages }}
+  &lt;h2&gt;
+    &lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;
+  &lt;/h2&gt;
+{{ end }}
+</code></pre><p>Everything surrounded by <code>{{ }}</code> is interpreted by Hugo as a template. We use the <code>range</code> function to loop over all pages. Inside the <code>range</code> block we have access to the page variables of the current page.</p>
+<h2 id="exercise">Exercise</h2>
+<p>Create a layout (with template variables), that renders a single lab page.</p>
+<!-- raw HTML omitted -->
+<p>Since the page is in <code>./content/labs</code> it belongs to the <code>labs</code> section.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Layouts in <code>./themes/mytheme/layouts/labs/</code> apply to the <code>labs</code> section. You can also use <code>./themes/mytheme/layouts/_default/</code>, because it is used as a default for all sections.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Since we want to render a single page, we can use <code>single.html</code>.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Add the following content in <code>./themes/mytheme/layouts/_default/single.html</code>:</p>
+<pre><code>&lt;h1&gt;{{ .Title }}&lt;/h1&gt;
+{{ .Content }}
+</code></pre><!-- raw HTML omitted -->
+<p>You can test your solution by running <code>hugo serve</code> and clicking a link on the homepage. You should see the content of the page.</p>
+<!-- raw HTML omitted -->
+<pre><code>$ rm -rf public
+$ hugo
+$ ls -l public/labs
+total 12
+drwxr-xr-x 2 lbischof lbischof 4096 Aug  4 12:52 01_quicktour
+-rw-r--r-- 1 lbischof lbischof    5 Aug  4 12:52 index.html
+-rw-r--r-- 1 lbischof lbischof 1104 Aug  4 12:52 index.xml
+</code></pre><p>We see that a new directory was created (<code>01_quicktour</code>). This directory contains an <code>index.html</code> file. This is done so that URLs are pretty (without <code>.html</code> suffix).</p>
+<!-- raw HTML omitted -->
+<h2 id="conclusion">Conclusion</h2>
+<p>We have now created a basic website. The homepage contains a list of clickable pages. However if you view the source of the page, it doesn&rsquo;t contain the neccesary HTML boilerplate. (<code>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</code>)</p>
+<p><a href="view-source:http://localhost:1313/">view-source:http://localhost:1313/</a></p>
+<p>In the next lab we will learn about template blocks and create a base layout that surrounds all layouts.</p>
+<hr>
+<p><strong>Ende Lab 5</strong></p>
+<!-- raw HTML omitted -->
+<p><a href="../README.md">← back to the overview</a></p>
+
+
+        </div></body>
+</html>

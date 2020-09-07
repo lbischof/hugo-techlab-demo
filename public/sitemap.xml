@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://example.org/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/readme.md</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/01_quicktour/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/02_cli/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/03_first_steps/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/04_content/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/05_templates/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/06_template_blocks/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/07_partials/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/08_assets/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/09_deployment/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/labs/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/</loc>
+  </url>
+  
+</urlset>

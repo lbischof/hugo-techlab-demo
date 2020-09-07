@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labs on My New Hugo Site</title>
+    <link>http://example.org/labs/</link>
+    <description>Recent content in Labs on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/labs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo Techlab</title>
+      <link>http://example.org/labs/readme.md</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/readme.md</guid>
+      <description>UNDER CONSTRUCTION
+These techlabs serve as an introduction to Hugo. After finishing these labs you will be able to create a small website and deploy it.
+Table of contents  Quicktour / basic concepts Install the Hugo CLI First Steps Content Templates Template Blocks Partials Assets Deployment  Additional Labs  Shortcodes  Additional Docs  Hugo Docs NetlifyCMS Docs  Additional Tutorials  Official Hugo Quick Start  Sources Some information and sentences are from:</description>
+    </item>
+    
+    <item>
+      <title>Lab 1: Quicktour Hugo</title>
+      <link>http://example.org/labs/01_quicktour/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/01_quicktour/</guid>
+      <description>In this lab we will introduce the core concepts of Hugo.
+What is Hugo? Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
+Hugo is a general-purpose website framework. Technically speaking, Hugo is a static site generator. Unlike systems that dynamically build a page with each visitor request, Hugo builds pages when you create or update your content. Since websites are viewed far more often than they are edited, Hugo is designed to provide an optimal viewing experience for your website’s end users and an ideal writing experience for website authors.</description>
+    </item>
+    
+    <item>
+      <title>Lab 2: Install the Hugo CLI</title>
+      <link>http://example.org/labs/02_cli/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/02_cli/</guid>
+      <description>As the client is written in Go, you can run the single binary on the following Operating Systems:
+ Linux MacOS Windows  Download hugo The easiest way to install Hugo is by downloading the binary from Github and moving it into ~/bin. Pick the release for your operating system. You probably have 64bit.
+However there are also other ways of installing Hugo.
+Set the the right file modes on Linux and MacOS If you downloaded the binary from Github, then make sure it is executable:</description>
+    </item>
+    
+    <item>
+      <title>Lab 3: First Steps</title>
+      <link>http://example.org/labs/03_first_steps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/03_first_steps/</guid>
+      <description>In this lab we will create a new Hugo project.
+Preparation for the labs Please clone the git repository, to have a local copy of all necessary excercises.
+$ cd [Git Repo Project Folder]$ git clone https://github.com/puzzle/hugo-techlab.gitAs a fallback the repository can be downloaded as a zip file.
+Create a New Project Note: Please make sure, you are finshed with Lab 2.
+The following command creates a new directory mysite.</description>
+    </item>
+    
+    <item>
+      <title>Lab 4: Content</title>
+      <link>http://example.org/labs/04_content/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/04_content/</guid>
+      <description>In the last lab we created a new site and theme.
+Content is stored in text files that contain two sections. The first section is the &amp;ldquo;front matter,&amp;rdquo; which is the meta-information on the content. The second section contains Markdown that will be converted to HTML.
+The following is an example file. The data enclosed in --- is front matter. Everything below the front matter is the markdown content.
+--- title: This is an example draft: true date: 2020-07-01 --- This is markdown content Front Matter The front matter is information about the content.</description>
+    </item>
+    
+    <item>
+      <title>Lab 5: Templates</title>
+      <link>http://example.org/labs/05_templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/05_templates/</guid>
+      <description>In the last lab we added some content. Hugo uses template files to render content (markdown) into HTML. Template files are a bridge between the content and presentation. Hugo doesn&amp;rsquo;t provide any default templates, meaning that content is not rendered by default.
+Without templates we would have to copy and paste the header and footer to each page. With templates we define the header and footer once and Hugo automatically includes it in every page.</description>
+    </item>
+    
+    <item>
+      <title>Lab 6: Template Blocks</title>
+      <link>http://example.org/labs/06_template_blocks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/06_template_blocks/</guid>
+      <description>The base and block constructs allow you to define the outer shell of your templates.
+The theme already includes a basic base template in layouts/_default/baseof.html:
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; {{- partial &amp;quot;head.html&amp;quot; . -}} &amp;lt;body&amp;gt; {{- partial &amp;quot;header.html&amp;quot; . -}} &amp;lt;div id=&amp;quot;content&amp;quot;&amp;gt; {{- block &amp;quot;main&amp;quot; . }}{{- end }} &amp;lt;/div&amp;gt; {{- partial &amp;quot;footer.html&amp;quot; . -}} &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; The block keyword behaves like a function that accepts two arguments:
+ the name of the block the current variable scope (.</description>
+    </item>
+    
+    <item>
+      <title>Lab 7: Partials</title>
+      <link>http://example.org/labs/07_partials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/07_partials/</guid>
+      <description>Partial templates allow you to introduce modularity into your website. They let you break your website down into individual components and then insert those components into layouts to create the site.
+Creating partial templates allows us to split our templates. It separates the website into smaller parts making it easier to manage. We can now tweak and change individual parts of the website without having to change or affect everything else.</description>
+    </item>
+    
+    <item>
+      <title>Lab 8: Assets</title>
+      <link>http://example.org/labs/08_assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/08_assets/</guid>
+      <description>Assets are Javascript, stylesheets and images. These assets can either be served directly without modification or Hugo can process them.
+Static Files By default, the static/ directory in the site project is used for all static files (e.g. stylesheets, JavaScript, images). The static files are served on the site root path (eg. if you have the file static/image.png you can access it using http://{server-url}/image.png, to include it in a document you can use !</description>
+    </item>
+    
+    <item>
+      <title>Lab 9: Deployment</title>
+      <link>http://example.org/labs/09_deployment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/labs/09_deployment/</guid>
+      <description>Now we will deploy our small website to Netlify.
+Version Control Netlify works by connecting with a public Git repository. Create a Git repository on github.com, gitlab.com or bitbucket.com and push your files:
+cd mysite git init git remote add origin [git clone url] git add . git commit &amp;quot;Initial Commit&amp;quot; git push Register Netlify Account You will have to create an account on netlify.com.
+Create a new site on Netlify Login to netlify.</description>
+    </item>
+    
+  </channel>
+</rss>
