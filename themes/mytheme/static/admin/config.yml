@@ -7,6 +7,8 @@ public_folder: /images/uploads
 
 collections:
   - name: labs
+    label: Labs
+    folder: content/labs
     fields:
       - label: Title
         name: title
