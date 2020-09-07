@@ -1,0 +1,16 @@
+backend:
+  name: github
+  repo: lbischof/hugo-techlab-demo
+
+media_folder: /static/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: labs
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Content
+        name: body
+        widget: markdown
